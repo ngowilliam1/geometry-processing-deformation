@@ -7,5 +7,9 @@ void biharmonic_solve(
   Eigen::MatrixXd & D)
 {
   // REPLACE WITH YOUR CODE
-  D = Eigen::MatrixXd::Zero(data.n,3);
+
+  // Beq is m by k list of linear equality constraint constant values, but we don't use it
+  Eigen::MatrixXd Beq;
+  Eigen::MatrixXd B = Eigen::MatrixXd::Zero(data.n, 3);
+  igl::min_quad_with_fixed_solve(data, B, bc, Beq, D);
 }
